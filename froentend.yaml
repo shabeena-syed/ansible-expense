@@ -32,7 +32,7 @@
 
     - name: extract the application
       ansible.builtin.unarchive: 
-       src: /tmp/frontend.zip  
+       src: /tmp/frontend.yaml  
        dest: cd /usr/share/nginx/html
        remote_src: yes
 
