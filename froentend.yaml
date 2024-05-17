@@ -3,7 +3,7 @@
   hosts: froentend
   tasks:
     - name: install nginx
-      ansible.builtin.package:
+      ansible.builtin.dnf:
        name: nginx
        state: present
 
@@ -11,7 +11,12 @@
       ansible.builtin.service:
        name: nginx
        enabled: yes
+      
+    - name: starting nginx
+      ansible.builtin.service:
+       name: nginx
        state: started
+       
 
     - name: removing html 
       ansible.builtin.file:
@@ -26,14 +31,14 @@
 
     - name: change the directory
       ansible.builtin.file:
-        path: cd /usr/share/nginx/html
+        path: /usr/share/nginx/html
         state: directory
 
 
     - name: extract the application
       ansible.builtin.unarchive: 
        src: /tmp/expense-frontend-v2.zip  
-       dest: cd /usr/share/nginx/html
+       dest: /usr/share/nginx/html
        remote_src: yes
 
     - name: copying config file
