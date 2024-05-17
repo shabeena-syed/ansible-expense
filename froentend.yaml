@@ -32,9 +32,9 @@
 
     - name: extract the application
       ansible.builtin.unarchive: 
-       src: unzip /tmp/frontend.zip
+       src: /tmp/frontend.zip  
        dest: cd /usr/share/nginx/html
-
+       remote_src: yes
 
     - name: copying config file
       ansible.builtin.copy:
