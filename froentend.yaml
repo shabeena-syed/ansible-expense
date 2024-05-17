@@ -20,7 +20,7 @@
 
     - name: downloading the frontend 
       ansible.builtin.get_url:
-        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip 
         dest: /tmp
 
 
@@ -32,7 +32,7 @@
 
     - name: extract the application
       ansible.builtin.unarchive: 
-       src: /tmp/frontend.yaml  
+       src: /tmp/expense-frontend-v2.zip  
        dest: cd /usr/share/nginx/html
        remote_src: yes
 
