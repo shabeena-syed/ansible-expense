@@ -27,6 +27,7 @@
     - name: change the directory
       ansible.builtin.file:
         path: cd /usr/share/nginx/html
+        state: directory
 
 
     - name: extract the application
@@ -44,5 +45,5 @@
       ansible.builtin.service:
         name: nginx
         state: restarted
-        
+
 
