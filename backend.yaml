@@ -2,11 +2,11 @@
   hosts: backend
   become: yes
 
- tasks:
-  - name: disable node.js
-    community.general.npm:
-     name: disable node.js      
-     state: absent
+  tasks:
+    - name: disable node.js
+      community.general.npm:
+       name: disable node.js      
+       state: absent
                                  
 
   - name: enable node.js:20
