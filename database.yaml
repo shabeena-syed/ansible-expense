@@ -10,7 +10,8 @@
         name: mysqld
         enabled: true
         state: started
-    - name: Start and enable MySQL
+
+    - name: restarting mysql
       ansible.builtin.service:
         name: mysqld
         state: restarted
