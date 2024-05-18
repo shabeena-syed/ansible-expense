@@ -1,5 +1,5 @@
 - name:  installing mysql 
-  hosts: backend 
+  hosts: database 
   become: yes 
   tasks:
     - name: install mysql 
