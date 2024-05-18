@@ -37,8 +37,8 @@
 
     - name: install dependendies
       ansible.builtin.command: npm install
-        args:
-         chdir: /backend.zip
+      args:
+        chdir: /app
 
     - name: copying backend service file
       ansible.builtin.copy:
