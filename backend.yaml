@@ -3,17 +3,8 @@
   become: yes
 
   tasks:
-    - name: disable node.js
-      ansible.builtin.shell: dnf module disable nodejs -y
-       name: disable node.js      
-       state: absent
-                                 
-
-    - name: enable node.js:20
-      ansible.builtin.shell: dnf module enable nodejs:20 -y
-       name: node.js:20
-       enabled: yes
-       nfstate: started
+    - name: disable old nodejs and enable nodejs
+      ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
 
 
   - name: install node.js
