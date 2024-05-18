@@ -9,13 +9,15 @@
       state: present
 
   - name: enabling mysqld
-    community.mysql.mysql_db:
-     - name: enable mysqld
-       state: present
+    ansible.builtin.service:
+     -  name: mysqld      
+        enabled: yes
+        state: started
+
 
   - name: starting mysqld
-    community.mysql.mysql_db:
-     - name: starting mysqld
+    ansible.builtin.service:
+     - name: mysqld
        state: present
 
   - name: mysql_secure installation
