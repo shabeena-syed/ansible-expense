@@ -5,8 +5,9 @@
  tasks:
   - name: disable node.js
     community.general.npm:
-     name: disable node.js
+     name: disable node.js      
      state: absent
+                                 
 
   - name: enable node.js:20
     community.general.npm:
@@ -20,23 +21,20 @@
      name: node.js
      state: present
 
-  - name: add the user 'expense'
+  - name: adding the user 'expense'
     ansible.builtin.user:
      name: expense
 
   - name: create directory
-   ansible.builtin.file:
-    state: directory
+    ansible.builtin.file:
+     state: directory
 
   - name: download the backend content
     ansible.builtin.get url:
-     url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-     dectination: /temp
+     url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip  
+     dest: /app
 
-  - name: change the directory
-    ansible.builtin.file:
-     path: /app
-     state : directory
+  
 
   - name: extract the appplication
     ansible.builtin.unarchive:
@@ -72,7 +70,7 @@
 
   - name: loading schema
     ansible.builtin.include_vars:
-     file: mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql 
+     file: mysql -h <172.31.16.139> -uroot -pExpenseApp@1 < /app/schema/backend.sql 
      name: backend.sql
 
 
