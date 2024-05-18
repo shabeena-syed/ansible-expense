@@ -1,4 +1,4 @@
-- name: installing  mysqld
+- name: installing  mysql
   hosts: database
   become: yes
   
@@ -10,14 +10,14 @@
 
    - name: enabling mysql
      ansible.builtin.service:
-      name: mysqld      
+      name: mysql     
       enabled: yes
       state: started
 
 
    - name: starting mysql
      ansible.builtin.service:
-      name: mysqld
+      name: mysql
       state: present
 
    - name: mysql_secure installation
