@@ -3,9 +3,6 @@
   become: yes
   
   tasks:
-   - name: disable current version of mysql
-     ansible.builtin.command: dnf module disable mysql -y
-
    - name: install mysql server
      ansible.builtin.package:
       name: mysql-community-server
