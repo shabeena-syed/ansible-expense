@@ -7,67 +7,67 @@
       ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
 
 
-  - name: install node.js
-    ansible.builtin.dnf:    
-     name: node.js
-     state: present
+    -  name: install node.js
+       ansible.builtin.dnf:    
+        name: node.js
+        state: present
 
-  - name: adding the user 'expense'
-    ansible.builtin.user:
-     name: expense
+    - name: adding the user 'expense'
+      ansible.builtin.user:
+        name: expense
 
-  - name: create directory
-    ansible.builtin.file:
-    path: /app
-     state: directory
+    - name: create directory
+      ansible.builtin.file:
+        path: /app
+        state: directory
 
-  - name: download the backend content
-    ansible.builtin.get url:
-     url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip  
-     dest: /app
+    - name: download the backend content
+      ansible.builtin.get url:
+        url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip  
+        dest: /app
 
   
 
-  - name: extract the appplication
-    ansible.builtin.unarchive:
-     src: /tmp/expense-backend-v2.zip
-     dest: /tmp/backend.zip   
-     remote_src: yes
+    - name: extract the appplication
+      ansible.builtin.unarchive:
+        src: /tmp/expense-backend-v2.zip
+        dest: /tmp/backend.zip   
+        remote_src: yes
 
 
-  - name: install dependendies
-    ansible.builtin.command: npm install
-    args:
-     chdir: /app
+    - name: install dependendies
+      ansible.builtin.command: npm install
+        args:
+          chdir: /app
 
-  - name: copying backend service file
-    ansible.builtin.copy:
-     src: backend.service
-     dest: /etc/systemd/system/backend.service 
+    - name: copying backend service file
+      ansible.builtin.copy:
+        src: backend.service
+        dest: /etc/systemd/system/backend.service 
 
-  - name:  deamon reload and start
-    ansible.builtin.systemd_service:
-     deamon_reload: true
+    - name:  deamon reload and start
+      ansible.builtin.systemd_service:
+        deamon_reload: true
 
-  - name: enable backend
-    ansible.builtin.service:
-     name : backend 
-     enabled: yes
+    - name: enable backend
+      ansible.builtin.service:
+        name : backend 
+        enabled: yes
        
 
-  - name : installing mysql
-    community.mysql.mysql_db:
-     name: mysql
-     state: present
+    - name : installing mysql
+      community.mysql.mysql_db:
+        name: mysql
+        state: present
 
-  - name: loading schema
-    ansible.builtin.include_vars:
-     file: mysql -h <172.31.16.139> -uroot -pExpenseApp@1 < /app/schema/backend.sql 
-     name: backend.sql
+    - name: loading schema
+      ansible.builtin.include_vars:
+        file: mysql -h <172.31.16.139> -uroot -pExpenseApp@1 < /app/schema/backend.sql 
+        name: backend.sql
 
 
-  - name : restart backend
-    ansible.builtin.service:
-     name: backend
-     state: restarted
+    - name : restart backend
+      ansible.builtin.service:
+        name: backend
+        state: restarted
      
