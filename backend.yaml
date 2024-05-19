@@ -1,4 +1,4 @@
-- name: backend 
+- name: backend-expence
   hosts: backend
   become: yes
 
@@ -66,5 +66,5 @@
         
     - name: restart 
       ansible.builtin.service:
-       name: backend
+       name: backend-expence
        state: restarted
