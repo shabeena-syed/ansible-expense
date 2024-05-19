@@ -66,11 +66,10 @@
         
 
 
-    - name: Restart service backend
+    - name: Restart and enable backend service
       ansible.builtin.service:
         name: backend
         state: restarted
-        enabled: yes
-        
+        #enabled: yes
 
         
