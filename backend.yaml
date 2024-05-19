@@ -64,7 +64,7 @@
       ansible.builtin.command: mysql -h 34.229.193.132
       -uroot -pExpenseApp@1 < /app/schema/backend.sql
         
-    - name: restart backend
+    - name: restart 
       ansible.builtin.service:
        name: backend
        state: restarted
