@@ -1,4 +1,4 @@
-- name: backend-new 
+- name: backend
   hosts: backend
   become: yes
 
@@ -66,11 +66,11 @@
         
 
 
-    - name: Restart service backend-new
+    - name: Restart service backend
       ansible.builtin.service:
-        name: backend-new
-        # enabled: yes
+        name: backend
         state: restarted
+        enabled: yes
         
 
         
