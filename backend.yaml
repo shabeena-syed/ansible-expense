@@ -1,4 +1,4 @@
-- name: backend installation
+- name: backend 
   hosts: backend
   become: yes
 
@@ -66,7 +66,7 @@
         
 
 
-    - name : restart backend
+    - name : restarting  backend
       ansible.builtin.service:
         name: backend
         state: restarted
