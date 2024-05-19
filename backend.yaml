@@ -30,8 +30,8 @@
 
     - name: extract the appplication
       ansible.builtin.unarchive:
-        src: /tmp/expense-backend-v2.zip
-        dest: backend.zip   
+        src: /app/expense-backend-v2.zip
+        dest: /app   
         remote_src: yes
 
 
@@ -62,7 +62,7 @@
 
     - name: loading schema
       ansible.builtin.include_vars:
-        file: mysql -h <172.31.16.139> -uroot -pExpenseApp@1 < /app/schema/backend.sql 
+        file: mysql -h 34.229.193.132 -uroot -pExpenseApp@1 < /app/schema/backend.sql 
         name: backend.sql
 
 
