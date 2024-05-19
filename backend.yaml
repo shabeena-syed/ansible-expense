@@ -61,7 +61,8 @@
         state: present
 
     - name: loading schema
-      ansible.builtin.command: mysql -h database -uroot -pExpenseApp@1 < /app/schema/backend.sql
+      ansible.builtin.command: mysql -h 34.229.193.132
+      -uroot -pExpenseApp@1 < /app/schema/backend.sql
         
 
 
