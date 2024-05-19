@@ -1,4 +1,4 @@
-- name: backend-expence
+- name: backend 
   hosts: backend
   become: yes
 
@@ -64,7 +64,10 @@
       ansible.builtin.command: mysql -h 34.229.193.132
       -uroot -pExpenseApp@1 < /app/schema/backend.sql
         
-    - name: restart 
+
+
+    - name: restarting backend service
       ansible.builtin.service:
-       name: backend-expence
-       state: restarted
+        name: backend
+        state: restarted
+     
