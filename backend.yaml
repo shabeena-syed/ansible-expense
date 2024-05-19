@@ -66,10 +66,11 @@
         
 
 
-    - name: start and enable backend  
+    - name: restart 
       ansible.builtin.service:
         name: backend-new
-        state: restarted
         enabled: yes
+        state: restarted
+        
 
         
