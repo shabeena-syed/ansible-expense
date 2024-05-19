@@ -7,9 +7,9 @@
       ansible.builtin.shell: dnf module disable nodejs -y ; dnf module enable nodejs:20 -y
 
 
-    -  name: install node.js
+    -  name: install nodejs
        ansible.builtin.dnf:    
-        name: node.js
+        name: nodejs
         state: present
 
     - name: adding the user 'expense'
