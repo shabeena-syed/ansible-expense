@@ -44,10 +44,10 @@
 
    
 
-   - name: reload nginx
+   - name: restart nginx
      ansible.builtin.service:
       name: nginx 
-      status: reloaded
+      state: restarted
 
       
 
