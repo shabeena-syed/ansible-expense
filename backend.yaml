@@ -1,6 +1,9 @@
-- name: configure backend server
+- name: installing backend 
   hosts: backend
-  become: yes
+  become: yes 
+  # vars:
+  #   login_host: bend.bigmatrix.in
+  #   login_password: ExpenseApp@1
   tasks:
     - name: desable node js 
       ansible.builtin.command: dnf module disable nodejs -y
