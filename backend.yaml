@@ -24,8 +24,8 @@
 
     - name: download the application
       ansible.builtin.get_url:
-        url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        dest: /app
+        url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+        dest: /tmp/backend.zip
 
     - name: change directory
       ansible.builtin.file:
@@ -33,12 +33,16 @@
 
     - name: unzip application
       ansible.builtin.unarchive:
-       src: /app
-       dest: /tmp/backend.zip
+       src: /tmp/backend.zip
+       dest: /app
+       remote_src: yes
+       
+
 
     - name: installing npm
-      community.general.npm:
-        path: /app
+      ansible.builtin.command: npm install
+      args:
+        chdir: /app
 
 
     - name: deamon reload service
