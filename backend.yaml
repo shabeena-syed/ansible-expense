@@ -2,47 +2,38 @@
   hosts: backend
   become: yes
   tasks:
-    - name: disable nodejs -y
+    tasks:
+    - name: desable node js 
       ansible.builtin.command: dnf module disable nodejs -y
-      
-    - name: enable nodejs:20 -y
-      ansible.builtin.command: dnf module enable nodejs:20 -y
-      
-
-    - name: adding user
-      ansible.builtin.user:
-       name: expense
     
-    - name: Remove /app if it's a file
-      ansible.builtin.file:
-        path: /app
-        state: absent
+    - name: enable node js 
+      ansible.builtin.command: dnf module enable nodejs:20 -y
+
+    - name: install nodejs 
+      ansible.builtin.dnf:
+        name: nodejs 
+        state: present
+
+    - name: add user 
+      ansible.builtin.user:
+        name: expense
 
     - name: creating app directory 
       ansible.builtin.file:
         path: /app 
         state: directory
-        # when: not directory_exists
-
-    - name: download the application
+    
+    - name: downloading code 
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        # src: /tmp/backend.zip
-        dest: /app
-
-
-    # - name: change directory
-    #   ansible.builtin.file:
-    #    dest: /app
-
-    - name: unzip backend code
+        dest: /tmp/backend.zip
+    
+    - name: unzipping 
       ansible.builtin.unarchive:
-       src: /tmp/backend.zip 
-       dest: /app
-       remote_src: yes
-       
-
-
+        src: /tmp/backend.zip
+        dest: /app
+        remote_src: yes
+    
     - name: npm installing 
       ansible.builtin.shell: npm install
       args:
