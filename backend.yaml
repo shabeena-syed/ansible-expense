@@ -49,7 +49,7 @@
 
     - name: deamon reload service
       ansible.builtin.service:
-       name: backendservice.repo
+       name: nodejs
        state: reloaded
 
     - name: start backend service
