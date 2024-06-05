@@ -14,7 +14,7 @@
        name: expense
 
 
-    - name: creating directory
+    - name: create app directory
       ansible.builtin.file:
        name: app
        state: directory
@@ -22,7 +22,9 @@
     - name: download the application
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        dest: /tmp/backend.zip
+        src: /tmp/backend2.zip
+        dest: /app
+
 
     # - name: change directory
     #   ansible.builtin.file:
@@ -30,8 +32,8 @@
 
     - name: unzip backend code
       ansible.builtin.unarchive:
-       src: /tmp/backend.zip
-       dest: /app
+       src: /app
+       dest: /tmp/backend.zip
        remote_src: yes
        
 
