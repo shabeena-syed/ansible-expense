@@ -32,7 +32,7 @@
    - name: download and unarchive code
      ansible.builtin.unarchive:
       src:  https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
-      dect: /usr/share/nginx/html
+      dest: /usr/share/nginx/html
       remote_src: yes
 
    
