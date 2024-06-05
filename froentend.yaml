@@ -18,14 +18,14 @@
       name: nginx
       status: started 
 
-    - name: removing content
-      ansible.builtin.file:
+   - name: removing content
+     ansible.builtin.file:
       path: /usr/share/nginx/html/*
 
 
    - name: downloading the content
      ansible.builtin.get_url:
-     url:  /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+      url:  /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
     
    - name: extract the content
      ansible.builtin.unarchive:
