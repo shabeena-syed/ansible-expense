@@ -37,7 +37,8 @@
 
    - name: unarchive the file
      ansible.builtin.unarchive:
-      dect: /tmp/frontend.zip
+      src: /usr/share/nginx/html
+      dest: /tmp/frontend.zip
 
    - name: copy content
      ansible.builtin.copy:
