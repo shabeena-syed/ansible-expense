@@ -13,10 +13,10 @@
       enabled: yes 
 
 
-   - name: start nginx service
-     ansible.builtin.service:
+   - name: daemon_ reload nginx service
+     ansible.builtin.systemd_service:
       name: nginx
-      status: started 
+      state: reloaded
 
    - name: removing content
      ansible.builtin.file:
@@ -41,10 +41,7 @@
       src: expense.conf
       dest: /etc/nginx/default.d/expense.conf
 
-   - name: daemon_reload nginx
-     ansible.builtin.systemd_service:
-      name: nginx
-      status: reloaded
+   
 
    - name: reatart nginx
      ansible.builtin.service:
