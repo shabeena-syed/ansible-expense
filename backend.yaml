@@ -52,15 +52,10 @@
        name: backend
        state: reloaded
 
-    - name: start backend service
+    - name: restart backend service
       ansible.builtin.service:
        name: backend
-       state: started
-
-    - name: enable backend service
-      ansible.builtin.service:
-       name: backend
-       enabled: yes
+       state: restarted
 
     - name: install mysql -y
       ansible.builtin.package:
