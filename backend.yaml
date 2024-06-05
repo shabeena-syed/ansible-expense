@@ -1,0 +1,74 @@
+- name: configure backend server
+  hosts: backend
+  become: yes
+  tasks:
+    - name: disabling nodejs -y
+      ansible.builtin.service:
+       name: nodejs
+       disabled: yes
+
+    - name: enabling nodejs:20 -y
+      ansible.builtin.service:
+       name: nodejs
+       enabled: yes
+
+    - name: adding user
+      ansible.builtin.user:
+       name: expense
+
+
+    - name: creating directory
+      ansible.builtin.file.module:
+       name: app
+       state: directory
+
+    - name: download the application
+      ansible.builtin.get_url:
+        url: /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
+        dest: /app
+
+    - name: change directory
+      ansible.builtin.file:
+       dest: /app
+
+    - name: unzip application
+      ansible.builtin.unarchive:
+       src: /app
+       dest: /tmp/backend.zip
+
+    - name: installing npm
+      community.general.npm:
+        path: /app
+
+
+    - name: deamon reload service
+      ansible.builtin.service:
+       name: backendservice.repo
+       state: reloaded
+
+    - name: start backend service
+      ansible.builtin.service:
+       name: backend
+       state: started
+
+    - name: enable backend service
+      ansible.builtin.service:
+       name: backend
+       enabled: yes
+
+    - name: install mysql -y
+      ansible.builtin.package:
+       name: mysql
+       state: started
+
+    - name: loading schema
+      ansible.builtin.command: mysql -h  -uroot -pExpenseApp@1 < /app/schema/backend.sql
+
+
+      
+
+
+
+
+      
+      

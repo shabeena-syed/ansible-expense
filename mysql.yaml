@@ -1,0 +1,27 @@
+- name:  congifure mysql server
+  hosts: database
+  become: yes
+  tasks:
+    - name: install mysql server -y
+      ansible.builtin.dnf:
+        name: mysql 
+        state: started
+        
+
+    - name: enabling mysql server
+      ansible.builtin.service:
+       name: mysql
+       enabled: yes
+
+    - name: starting mysql server
+      ansible.builtin.service:
+      name: mysql
+      status: start
+
+    # password  
+    - name: stetting password 
+      ansible.builtin.command: mysql_secure_installation --set-root-pass ExpenseApp@1
+
+
+
+       

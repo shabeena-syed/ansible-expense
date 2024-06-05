@@ -1,0 +1,46 @@
+- name: configure froentend
+  hosts: froentend
+  become: yes
+  tasks:
+   - name: install nginx -y
+     ansible.builtin.dnf:
+      name: nginx
+      state: started
+
+    - name: enable nginx service
+      ansible.builtin.service:
+       name: nginx
+       enabled: yes
+
+
+    - name: start nginx service
+      ansible.builtin.service:
+       name: nginx
+       status: started 
+
+    - name: removing content
+      ansible.builtin.file:
+      path: /usr/share/nginx/html/*
+
+
+    - name: downloading the content
+      ansible.builtin.get_url:
+       url:  /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+    
+    - name: extract the content
+      ansible.builtin.unarchive:
+         src: /tmp/frontend-v2.zip
+         dest: /usr/share/nginx/html
+
+    - name: unarchive the file
+      ansible.builtin.unarchive:
+        dect: /tmp/frontend.zip
+
+    - name: restart nginx
+      ansible.builtin.service:
+       name: nginx 
+       status: restarted
+
+      
+
+    
