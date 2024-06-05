@@ -4,9 +4,7 @@
   tasks:
     - name: disable nodejs -y
       ansible.builtin.command: dnf module disable nodejs -y
-       name: nodejs
-       disabled: yes
-
+      
     - name: enable nodejs:20 -y
       ansible.builtin.service:
        name: nodejs
