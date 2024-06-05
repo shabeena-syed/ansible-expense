@@ -14,9 +14,9 @@
        name: expense
 
 
-    - name: create app directory
+    - name: creating app directory 
       ansible.builtin.file:
-        path: /app
+        path: /app 
         state: directory
         when: not directory_exists
 
