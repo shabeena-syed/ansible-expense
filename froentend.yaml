@@ -41,7 +41,7 @@
       src: expense.conf
       dest: /etc/nginx/default.d/expense.conf
 
-   - name: daemon reload nginx
+   - name: daemon_reload nginx
      ansible.builtin.systemd_service:
       name: nginx
       status: reloaded
