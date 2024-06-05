@@ -27,7 +27,7 @@
     - name: download the application
       ansible.builtin.get_url:
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
-        src: /tmp/backend.zip
+        dest: /tmp/backend.zip
         
 
 
