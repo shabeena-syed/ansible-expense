@@ -18,7 +18,7 @@
 
 
     - name: creating directory
-      ansible.builtin.file.module:
+      ansible.builtin.file:
        name: app
        state: directory
 
