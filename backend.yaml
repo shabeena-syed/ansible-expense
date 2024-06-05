@@ -18,7 +18,7 @@
       ansible.builtin.file:
         path: /app 
         state: directory
-        when: not directory_exists
+        # when: not directory_exists
 
     - name: download the application
       ansible.builtin.get_url:
