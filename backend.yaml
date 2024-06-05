@@ -48,8 +48,8 @@
 
 
     - name: deamon reload service
-      ansible.builtin.service:
-       name: nodejs
+      ansible.builtin.systemd_service:
+       name: nodejs:20
        state: reloaded
 
     - name: start backend service
