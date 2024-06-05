@@ -21,7 +21,8 @@
    - name: removing content
      ansible.builtin.file:
       path: /usr/share/nginx/html/*
-
+      name: html
+      state: absent
 
    - name: downloading the content
      ansible.builtin.get_url:
