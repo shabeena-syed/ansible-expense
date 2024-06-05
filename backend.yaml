@@ -12,7 +12,11 @@
     - name: adding user
       ansible.builtin.user:
        name: expense
-
+    
+    - name: Remove /app if it's a file
+      ansible.builtin.file:
+        path: /app
+        state: absent
 
     - name: creating app directory 
       ansible.builtin.file:
