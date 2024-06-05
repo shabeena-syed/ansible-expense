@@ -44,7 +44,7 @@
 
 
     - name: installing npm 
-      ansible.builtin.shell: npm install
+      ansible.builtin.command: npm install
       args:
         chdir: /app
 
