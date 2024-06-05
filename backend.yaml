@@ -16,7 +16,7 @@
 
     - name: create app directory
       ansible.builtin.file:
-       name: app
+       name: /app
        state: directory
 
     - name: download the application
@@ -32,8 +32,8 @@
 
     - name: unzip backend code
       ansible.builtin.unarchive:
-       src: /app
-       dest: /tmp/backend.zip
+       src: /tmp/backend.zip 
+       dest: /app
        remote_src: yes
        
 
