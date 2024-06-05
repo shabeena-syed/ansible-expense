@@ -25,16 +25,21 @@
 
    - name: downloading the content
      ansible.builtin.get_url:
-      url:  /tmp/frontend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
+      url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-frontend-v2.zip
     
    - name: extract the content
      ansible.builtin.unarchive:
-      src: /tmp/frontend-v2.zip
+      src:  /tmp/frontend.zip
       dest: /usr/share/nginx/html
 
    - name: unarchive the file
      ansible.builtin.unarchive:
       dect: /tmp/frontend.zip
+
+   - name: copy content
+     ansible.builtin.copy:
+      src: expense.conf
+      dest: /etc/nginx/default.d/expense.conf
 
    - name: restart nginx
      ansible.builtin.service:
