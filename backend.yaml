@@ -60,7 +60,7 @@
     - name: install mysql -y
       ansible.builtin.package:
        name: mysql
-       state: started
+       state: latest
 
     - name: loading schema
       ansible.builtin.command: mysql -h  -uroot -pExpenseApp@1 < /app/schema/backend.sql
