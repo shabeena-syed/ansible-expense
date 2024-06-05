@@ -24,9 +24,9 @@
         url: https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip
         dest: /tmp/backend.zip
 
-    - name: change directory
-      ansible.builtin.file:
-       dest: /app
+    # - name: change directory
+    #   ansible.builtin.file:
+    #    dest: /app
 
     - name: unzip application
       ansible.builtin.unarchive:
