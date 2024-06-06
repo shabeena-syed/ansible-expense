@@ -66,10 +66,9 @@
       ansible.builtin.shell: mysql -h db.bigmatrix.in -uroot -pExpenseApp@1 < /app/schema/backend.sql
 
 
-    - name: start and enable backend 
+    - name: restart backend 
       ansible.builtin.service:
         name: backend
-        enabled: yes
         state: restarted
 
 
