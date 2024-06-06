@@ -59,7 +59,7 @@
 
     - name: install mysql -y
       ansible.builtin.package:
-       name: mysql
+       name: mysqld
        state: latest
 
     - name: loading schema
