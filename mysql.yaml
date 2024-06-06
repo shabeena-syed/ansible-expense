@@ -8,15 +8,16 @@
         state: latest
         
 
-    - name: enable mysql server
+    - name:  start and enable mysql server
       ansible.builtin.service:
        name: mysqld
+       state: started
        enabled: yes
 
-    - name: start mysql server
-      ansible.builtin.service:
-       name: mysqld
-       status: started
+    # - name: start mysql server
+    #   ansible.builtin.service:
+    #    name: mysqld
+    #    status: started
 
     # password  
     - name: stetting password 
