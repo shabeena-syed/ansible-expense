@@ -10,12 +10,12 @@
 
     - name: enable mysql server
       ansible.builtin.service:
-       name: database
+       name: mysqld
        enabled: yes
 
     - name: start mysql server
       ansible.builtin.service:
-       name: database
+       name: mysqld
        status: started
 
     # password  
