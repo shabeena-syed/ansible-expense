@@ -57,10 +57,10 @@
        name: backend
        state: restarted
 
-    - name: install mysql -y
-      ansible.builtin.package:
-       name: mysqld
-       state: latest
+    - name: install mysql server -y
+      ansible.builtin.dnf:
+        name: mysql-server
+        state: present
 
     - name: loading schema
       ansible.builtin.command: mysql -h db.bigmatrix.in -uroot -pExpenseApp@1 < /app/schema/backend.sql
